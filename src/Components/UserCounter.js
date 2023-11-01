@@ -1,11 +1,18 @@
 import { useState } from "react";
 
-function UserComponent(){
-    const [life, setLife] = useState(20);
+function UserComponent(props){
+    const [life, setLife] = useState(props.startingLife);
+
+    const componentStyle = {
+        borderColor: props.color,
+        boxShadow: `0 0 6px ${props.color}`,
+    };
 
     return(
-        <div className="UserComponent">
-            <p className="UserComponent-Life">{life}</p>
+        <div className="usercomponent" style={componentStyle}>
+            <p className="usercomponent--life">{life}</p>
         </div>
     );
 }
+
+export default UserComponent;
