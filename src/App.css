@@ -1,0 +1,29 @@
+:root {
+  --black: #0b090a;
+  --white: #f1faee;
+  --gray: #161a1d;
+  --light-gray: #adb5bd;
+  --accent: #7209b7;
+  --accent-hover: #480ca8; 
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'IBM Plex Sans';
+}
+.banner{
+  background-color: var(--black);
+  color:#f1faee;
+  padding: 1.2rem 5rem;
+}
+.banner h1{
+  font-weight: 500;
+}
+.banner h2{
+  font-weight: 300;
+}
+
+body{
+  background-color: var(--gray);
+}
