@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function UserComponent(props){
-    const [life, setLife] = useState(props.startingLife);
+    const startingLifeNum = parseInt(props.startingLife, 10)
+    const clickIncrementNum = parseInt(props.clickIncrement, 10)
+
+    const [life, setLife] = useState(startingLifeNum);
+    const clickIncrement = clickIncrementNum;
     const less = "<";
     const more = ">";
 
@@ -10,17 +14,21 @@ function UserComponent(props){
         boxShadow: `0 0 6px ${props.color}`,
     };
 
+    const lifeStyle = {
+        color: life <= 0 ? '#660708' : '#f1faee',
+    };
+
     function subtractLife(){
-        setLife(life-1);
+        setLife((prevLife) => prevLife - clickIncrement);
     }
     function addLife(){
-        setLife(life+1);
+        setLife((prevLife) => prevLife + clickIncrement);
     }
 
     return(
         <div className="usercomponent" style={componentStyle}>
             <button className="subtract-health-button" onClick={subtractLife}>{less}</button>
-            <p className="usercomponent--life">{life}</p>
+            <p className="usercomponent--life" style={lifeStyle}>{life}</p>
             <button className="add-health-button" onClick={addLife}>{more}</button>
         </div>
     );
