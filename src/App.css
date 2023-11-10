@@ -5,13 +5,18 @@
   --light-gray: #adb5bd;
   --accent: #7209b7;
   --accent-hover: #480ca8; 
+  --red: #660708;
+  --green: #006400;
 }
 
+/* Main Page */
 *{
   margin: 0;
   padding: 0;
   font-family: 'IBM Plex Sans';
 }
+
+/* Banner */
 .banner{
   background-color: var(--black);
   color:#f1faee;
@@ -24,6 +29,63 @@
   font-weight: 300;
 }
 
+/* Body */
 body{
   background-color: var(--gray);
+}
+
+.container{
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin: auto;
+  width: 60%;
+  height: 75vh;
+  margin-top: 2rem;
+}
+
+/* User Counter */
+.usercomponent{
+  text-align: center;
+  border-radius: 1.2rem;
+  border: 5px solid;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.usercomponent--life{
+  font-size: 2.7rem;
+  font-weight: 600;
+  color: var(--white);
+  position: absolute;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  z-index: -1;
+}
+
+.subtract-health-button, .add-health-button{
+  background-color:transparent;
+  color: #f1faee;
+  font-size: large;
+  border: none;
+  flex: 0 -10% 50%;
+  height: 100%;
+  border-radius: 0.8rem;
+  transition: background 2s ease;
+  &:hover{
+    cursor: pointer;
+  }
+  &:active{
+    background: linear-gradient(to right, transparent 0%,var(--green) 250%);
+    
+  }
+}
+.subtract-health-button:active{
+  background: linear-gradient(to left, transparent 0%,var(--red) 250%);
 }
