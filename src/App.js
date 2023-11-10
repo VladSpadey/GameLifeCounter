@@ -3,8 +3,7 @@ import UserCounter from './Components/UserCounter';
 import './App.css';
 
 function App() {
-
-  const clickIncrement = 1;
+  const [clickIncrement, setClickIncrement] = useState(1);
   const [selectedPlayers, setSelectedPlayers] = useState('2');
   const [selectedLife, setSelectedLife] = useState('20');
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -23,6 +22,10 @@ function App() {
     setSelectedLife(event.target.value);
   }
 
+  const handleClickIncrement = (event) => {
+    setClickIncrement(event.target.value);
+  }
+
   const handleFormSubmit = (event) => {
     event.preventDefault();
     console.log("selectedPlayers:", selectedPlayers);
@@ -31,7 +34,7 @@ function App() {
     setFormSubmitted(true);
   };
 
-  const generateUniqueKey = (index) => `userCounter-${index}-${selectedLife}-${clickIncrement}-${Date.now()}`;
+  const generateUniqueKey = (index) => `userCounter-${index}-${Date.now()}`;
 
   const defaultUserCounters = Array.from({ length: 2 }).map((_, index) => (
     <UserCounter key={generateUniqueKey(index)} startingLife={20} clickIncrement={clickIncrement} color={colors[index]} />
@@ -43,7 +46,7 @@ function App() {
     if (formSubmitted) {
       setUserCounters([]);
       setUserCounters(Array.from({ length: selectedPlayers }).map((_, index) => (
-        <UserCounter key={generateUniqueKey(index)} startingLife={selectedLife} clickIncrement={clickIncrement} color={colors[index]} />
+        <UserCounter key={generateUniqueKey(index)} startingLife={selectedLife != NaN ? selectedLife : 20} clickIncrement={clickIncrement} color={colors[index]} />
       )));
       setFormSubmitted(false);
     }
@@ -88,9 +91,15 @@ function App() {
                 <label htmlFor={`life-${index + 1}`} className='defaultLife-label'><h2>{value}</h2></label>
               </div>
             ))}
-            <p>Custom Life:</p> <input type='number'/>
-            <p>Click Increment:</p> <input type='number'/>
-            <input type="button" value="Set Up" onClick={handleFormSubmit}/>
+            <div className='form__group field'>
+              <input type='number' onChange={handleCustomLife} className="form__field" placeholder="Set Your Custom Life" name="customLife" id='customLife'/>
+              <label htmlFor="customLife" className="form__label">Custom Life</label> 
+            </div>
+            <div className='form__group field'>
+              <input type='number' onChange={handleClickIncrement} className="form__field" placeholder="Click Increment" name="increment" id='increment'/>
+              <label htmlFor="increment" className="form__label">Click Increment</label> 
+            </div>
+            <input type="button" value="Set Up" className='submitButton' onClick={handleFormSubmit}/>
           </form>
         </div>
       </header>
