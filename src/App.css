@@ -103,18 +103,21 @@ body{
 .settings form{
   display: flex;
   align-items: baseline;
-  
 }
 .settings form p{
+  margin-left: 3rem;
   color: var(--white);
   padding: 0.3rem;
   font-size: 1.3rem;
+  &:first-child{
+    margin-left: 0;
+  }
 }
 .players-label, .defaultLife-label{
   display: inline-block;
   color: var(--black);
   margin: 0 0.15em;
-  padding: 0.5rem 0.75rem;
+  padding: 0.5rem 0.85rem;
   cursor: pointer;
   border-radius: 0.25em;
   background: var(--light-gray);

@@ -1,14 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import UserCounter from './Components/UserCounter';
 import './App.css';
 
 function App() {
-  const [userAmount, setUserAmount] = useState(5);
-  
-  const clickIncrement = 1;
 
+  const clickIncrement = 1;
   const [selectedPlayers, setSelectedPlayers] = useState('2');
   const [selectedLife, setSelectedLife] = useState('20');
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const colors = ["#ff0040", "#0040ff", "#00b300", "#ffffd8", "#7209b7", "#676767"];
+
 
   const handlePlayersChange = (event) => {
     setSelectedPlayers(event.target.value);
@@ -18,15 +19,42 @@ function App() {
     setSelectedLife(event.target.value);
   };
 
+  const handleCustomLife = (event) => {
+    setSelectedLife(event.target.value);
+  }
 
-  const colors = ["#ff0040", "#0040ff", "#00b300", "#ffffd8", "#7209b7", "#676767"];
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    console.log("selectedPlayers:", selectedPlayers);
+    console.log("selectedLife:", selectedLife);
+    console.log("clickIncrement:", clickIncrement);
+    setFormSubmitted(true);
+  };
+
+  const generateUniqueKey = (index) => `userCounter-${index}-${selectedLife}-${clickIncrement}-${Date.now()}`;
+
+  const defaultUserCounters = Array.from({ length: 2 }).map((_, index) => (
+    <UserCounter key={generateUniqueKey(index)} startingLife={20} clickIncrement={clickIncrement} color={colors[index]} />
+  ));
+
+  const [userCounters, setUserCounters] = useState(defaultUserCounters);
+
+  useEffect(() => {
+    if (formSubmitted) {
+      setUserCounters([]);
+      setUserCounters(Array.from({ length: selectedPlayers }).map((_, index) => (
+        <UserCounter key={generateUniqueKey(index)} startingLife={selectedLife} clickIncrement={clickIncrement} color={colors[index]} />
+      )));
+      setFormSubmitted(false);
+    }
+  }, [formSubmitted, selectedPlayers, selectedLife, clickIncrement]);
 
   return (
     <div className="App">
       <header className="App-header">
         <div className='banner'>
           <h1>Game Life Counter</h1>
-          <h2>Count Your Way to Victory with Magic, Yu-Gi-Oh!, Pokémon, or any other TCG game</h2>
+          <h2>Count Your Way to Victory with Magic, Yu-Gi-Oh!, Pokémon, and other TCG games</h2>
         </div>
         <div className='settings'>
           <form>
@@ -60,17 +88,16 @@ function App() {
                 <label htmlFor={`life-${index + 1}`} className='defaultLife-label'><h2>{value}</h2></label>
               </div>
             ))}
-            <p>Custom Life:</p> <input />
-            <input type="button" value="set up"></input>
+            <p>Custom Life:</p> <input type='number'/>
+            <p>Click Increment:</p> <input type='number'/>
+            <input type="button" value="Set Up" onClick={handleFormSubmit}/>
           </form>
         </div>
       </header>
       <div className='counters'>
         {selectedPlayers > 0 && (
           <div className='container'>
-            {Array.from({ length: selectedPlayers }).map((_, index) => (
-              <UserCounter key={index} startingLife={selectedLife} clickIncrement={clickIncrement} color={colors[index]}/>
-            ))}
+            {userCounters}
           </div>
         )}
       </div>

@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function UserComponent(props){
-    const [life, setLife] = useState(props.startingLife);
+    const startingLifeNum = parseInt(props.startingLife, 10)
+    const [life, setLife] = useState(startingLifeNum);
     const clickIncrement = props.clickIncrement;
     const less = "<";
     const more = ">";
@@ -12,10 +13,10 @@ function UserComponent(props){
     };
 
     function subtractLife(){
-        setLife(life-clickIncrement);
+        setLife((prevLife) => prevLife - clickIncrement);
     }
     function addLife(){
-        setLife(life+clickIncrement);
+        setLife((prevLife) => prevLife + clickIncrement);
     }
 
     return(
