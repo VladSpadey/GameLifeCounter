@@ -5,6 +5,8 @@
   --light-gray: #adb5bd;
   --accent: #7209b7;
   --accent-hover: #480ca8; 
+  --red: #660708;
+  --green: #006400;
 }
 
 /* Main Page */
@@ -45,9 +47,6 @@ body{
 
 /* User Counter */
 .usercomponent{
-  padding: 7rem;
-  padding-top: 14%;
-  padding-bottom: 14%;
   text-align: center;
   border-radius: 1.2rem;
   border: 5px solid;
@@ -60,4 +59,33 @@ body{
   font-size: 2.7rem;
   font-weight: 600;
   color: var(--white);
+  position: absolute;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  z-index: -1;
+}
+
+.subtract-health-button, .add-health-button{
+  background-color:transparent;
+  color: #f1faee;
+  font-size: large;
+  border: none;
+  flex: 0 -10% 50%;
+  height: 100%;
+  border-radius: 0.8rem;
+  transition: background 2s ease;
+  &:hover{
+    cursor: pointer;
+  }
+  &:active{
+    background: linear-gradient(to right, transparent 0%,var(--green) 250%);
+    
+  }
+}
+.subtract-health-button:active{
+  background: linear-gradient(to left, transparent 0%,var(--red) 250%);
 }

@@ -13,11 +13,21 @@ function App() {
 
   return (
     <div className="App">
-
       <header className="App-header">
         <div className='banner'>
           <h1>Game Life Counter</h1>
           <h2>Count Your Way to Victory with Magic, Yu-Gi-Oh!, Pokémon, or any other TCG game</h2>
+        </div>
+        <div className='settings'>
+          <p>Players: </p>
+          <button>1</button>
+          <button>2</button>
+          <button>3</button>
+          <button>4</button>
+          <button>5</button>
+          <button>6</button>
+
+          <p>Life: </p>
         </div>
       </header>
       <div className='counters'>
