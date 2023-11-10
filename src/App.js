@@ -19,15 +19,21 @@ function App() {
           <h2>Count Your Way to Victory with Magic, Yu-Gi-Oh!, Pokémon, or any other TCG game</h2>
         </div>
         <div className='settings'>
-          <p>Players: </p>
-          <button>1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>4</button>
-          <button>5</button>
-          <button>6</button>
+          <form>
+            <p>Players: </p>
+            <input type="radio" name="players" id="players-1" value="1"></input><label for="players-1">1</label>
+            <input type="radio" name="players" value="2"></input>
+            <input type="radio" name="players" value="3"></input>
+            <input type="radio" name="players" value="4"></input>
+            <input type="radio" name="players" value="5"></input>
+            <input type="radio" name="players" value="6"></input>
 
-          <p>Life: </p>
+            <p>Life: </p>
+            <input type="radio" name="life" value="20"></input>
+            <input type="radio" name="life" value="20"></input>
+            <input type="radio" name="life" value="40"></input>
+            <p>Custom Life:</p> <input />
+          </form>
         </div>
       </header>
       <div className='counters'>
