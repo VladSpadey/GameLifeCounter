@@ -17,11 +17,14 @@
   font-family: 'IBM Plex Sans';
 }
 
+@media only screen and (min-width: 1350px){
+  
+}
 /* Banner */
 .banner{
   background-color: var(--black);
   color:#f1faee;
-  padding: 1.2rem 5rem;
+  padding: 1.2rem 12rem;
 }
 .banner h1{
   font-weight: 500;
@@ -35,6 +38,8 @@ body{
   background-color: var(--gray);
 }
 
+/* User Counter */
+
 .container{
   display: grid;
   grid-template-rows: repeat(3, 1fr);
@@ -46,7 +51,7 @@ body{
   margin-top: 2rem;
 }
 
-/* User Counter */
+
 .usercomponent{
   text-align: center;
   border-radius: 1.2rem;
@@ -242,11 +247,69 @@ input[type=number] {
   }
 }
 
-@media (max-width: 768px) {
+@media only screen and (max-width: 1350px){
   .banner{
+    padding: 1.2rem 3rem;
+  }
+  .settings form {
+    flex-wrap: wrap;
+  }
+  .settings form p {
+    box-sizing: border-box;
+    margin-bottom: 1.5rem;
+  }
+  .settings form {
+    width: calc(660px);
+  }
+  .container{
+    width: 80%;
+    height: 65vh;
+    margin-top: 2rem;
+  }
+  .usercomponent{
+    text-align: center;
+    border-radius: 1.2rem;
+    border: 5px solid;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .banner h2 {
     display: none;
   }
-  .settings{
-    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .container{
+    width: 90%;
+    height: 65vh;
+    gap: 1rem;
+  }
+}
+
+@media only screen and (max-width: 670px) {
+  .settings form {
+    flex-wrap: wrap;
+    width: calc(90%);
+  }
+  .settings form p {
+    margin: 0; 
+    width: 100%;
+  }
+  .container{
+    width: 95%;
+    height: 65vh;
+    margin-bottom: 2rem;
+  }
+  .form__group {
+    position: relative;
+    margin: 2rem 10rem 0rem 0;
+  }
+  .submitButton{
+    width: 100%;
+    margin: 2rem 0 0 0;
   }
 }
