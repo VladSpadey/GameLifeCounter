@@ -3,11 +3,21 @@ import UserCounter from './Components/UserCounter';
 import './App.css';
 
 function App() {
-  const [userAmount, setUserAmount] = useState(6);
+  const [userAmount, setUserAmount] = useState(5);
+  
+  const clickIncrement = 1;
 
-  const handleUserAmountChange = (event) => {
-    setUserAmount(parseInt(event.target.value, 10));
+  const [selectedPlayers, setSelectedPlayers] = useState('2');
+  const [selectedLife, setSelectedLife] = useState('20');
+
+  const handlePlayersChange = (event) => {
+    setSelectedPlayers(event.target.value);
   };
+
+  const handleLifeChange = (event) => {
+    setSelectedLife(event.target.value);
+  };
+
 
   const colors = ["#ff0040", "#0040ff", "#00b300", "#ffffd8", "#7209b7", "#676767"];
 
@@ -21,26 +31,45 @@ function App() {
         <div className='settings'>
           <form>
             <p>Players: </p>
-            <input type="radio" name="players" id="players-1" value="1"></input><label for="players-1">1</label>
-            <input type="radio" name="players" value="2"></input>
-            <input type="radio" name="players" value="3"></input>
-            <input type="radio" name="players" value="4"></input>
-            <input type="radio" name="players" value="5"></input>
-            <input type="radio" name="players" value="6"></input>
-
+            {[1, 2, 3, 4, 5, 6].map((number) => (
+              <div key={number}>
+                <input
+                  type="radio"
+                  name="players"
+                  id={`players-${number}`}
+                  value={number}
+                  className='hidden players'
+                  checked={selectedPlayers === `${number}`}
+                  onChange={handlePlayersChange}
+                />
+                <label htmlFor={`players-${number}`} className='players-label'><h2>{number}</h2></label>
+              </div>
+            ))}
             <p>Life: </p>
-            <input type="radio" name="life" value="20"></input>
-            <input type="radio" name="life" value="20"></input>
-            <input type="radio" name="life" value="40"></input>
+            {[20, 30, 40].map((value, index) => (
+              <div key={index}>
+                <input
+                  type="radio"
+                  name="life"
+                  id={`life-${index + 1}`}
+                  value={value}
+                  className='hidden defaultLife'
+                  checked={selectedLife === `${value}`}
+                  onChange={handleLifeChange} 
+                />
+                <label htmlFor={`life-${index + 1}`} className='defaultLife-label'><h2>{value}</h2></label>
+              </div>
+            ))}
             <p>Custom Life:</p> <input />
+            <input type="button" value="set up"></input>
           </form>
         </div>
       </header>
       <div className='counters'>
-        {userAmount > 0 && (
+        {selectedPlayers > 0 && (
           <div className='container'>
-            {Array.from({ length: userAmount }).map((_, index) => (
-              <UserCounter key={index} startingLife={20} color={colors[index]}/>
+            {Array.from({ length: selectedPlayers }).map((_, index) => (
+              <UserCounter key={index} startingLife={selectedLife} clickIncrement={clickIncrement} color={colors[index]}/>
             ))}
           </div>
         )}

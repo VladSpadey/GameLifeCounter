@@ -1,7 +1,8 @@
 :root {
   --black: #0b090a;
   --white: #f1faee;
-  --gray: #161a1d;
+  --gray: #212529;
+  --bright-gray: #161a1d;
   --light-gray: #adb5bd;
   --accent: #7209b7;
   --accent-hover: #480ca8; 
@@ -88,4 +89,60 @@ body{
 }
 .subtract-health-button:active{
   background: linear-gradient(to left, transparent 0%,var(--red) 250%);
+}
+
+/* Settings */
+.settings{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bright-gray);
+  padding: 0.6rem 0;
+}
+
+.settings form{
+  display: flex;
+  align-items: baseline;
+  
+}
+.settings form p{
+  color: var(--white);
+  padding: 0.3rem;
+  font-size: 1.3rem;
+}
+.players-label, .defaultLife-label{
+  display: inline-block;
+  color: var(--black);
+  margin: 0 0.15em;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  border-radius: 0.25em;
+  background: var(--light-gray);
+  box-shadow: 0 3px rgba(0, 0, 0, 0.2), inset 0 -3px 0 rgba(0, 0, 0, 0.22);
+  transition: 0.3s ease;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  &:hover{
+    background-color: #aaaaaa;
+  }
+  &:active {
+    transform: translateY(2px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2),
+      inset 0px -1px 0 rgba(0, 0, 0, 0.22);
+  }
+}
+
+.players:checked + .players-label, .defaultLife:checked + .defaultLife-label {
+  background: var(--accent);
+  color: var(--white);
+  &:hover {
+    background: var(--accent-hover);
+    color: var(--white);
+  }
+}
+
+.hidden {
+  display: none;
 }

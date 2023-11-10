@@ -2,6 +2,7 @@ import { useState } from "react";
 
 function UserComponent(props){
     const [life, setLife] = useState(props.startingLife);
+    const clickIncrement = props.clickIncrement;
     const less = "<";
     const more = ">";
 
@@ -11,10 +12,10 @@ function UserComponent(props){
     };
 
     function subtractLife(){
-        setLife(life-1);
+        setLife(life-clickIncrement);
     }
     function addLife(){
-        setLife(life+1);
+        setLife(life+clickIncrement);
     }
 
     return(
